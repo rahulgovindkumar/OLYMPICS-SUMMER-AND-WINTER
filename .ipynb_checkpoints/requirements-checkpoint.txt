@@ -1,0 +1,9 @@
+pandas
+streamlit
+altair
+vega_datasets
+plotly
+numpy
+processModule
+seaborn
+matplotlib
