@@ -26,7 +26,7 @@ df_summer,df_winter = processModule.process_summer_winter(df, region_df)
 st.sidebar.title("Olympics Analysis")
 user_menu = st.sidebar.radio(
     'Select an option',
-    ('Home','Medal Dashboard', 'Country-wise Analysis', 'Athlete wise Analysis', 'Overall Analysis')
+    ('Home','Medal Dashboard', 'Country-wise Analysis', 'Athlete-wise Analysis', 'Overall Analysis')
 )
 
  #---------------------------------------------------------------------------------------------------------------------------------------------     
@@ -363,7 +363,7 @@ elif user_menu == 'Country-wise Analysis':
 
 #Revanth Seethamraju
 
-elif user_menu == 'Athlete wise Analysis':
+elif user_menu == 'Athlete-wise Analysis':
 
     #Get list of years and country for options
     years, country = processModule.country_year_list(df_main)
