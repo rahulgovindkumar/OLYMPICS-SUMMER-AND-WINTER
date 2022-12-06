@@ -39,7 +39,7 @@ def process_summer_winter(df, region_df):
     return df_summer,df_winter
 
 
-def fetch_medal_count(df, year, country):
+def get_medal_count(df, year, country):
     medal_df = df.drop_duplicates(subset=['Team', 'NOC', 'Games', 'Year', 'City', 'Sport', 'Event', 'Medal'])
     flag = 0
     if year == 'All Countries' and country == 'All Countries':
@@ -67,7 +67,7 @@ def fetch_medal_count(df, year, country):
     return x
 
 
-def country_year_list(df):
+def get_country_year(df):
     years = df['Year'].unique().tolist()
     years.sort()
     years.insert(0, 'All Years')
@@ -79,14 +79,6 @@ def country_year_list(df):
     return years, country
 
 
-def fetch_country_year_df(df ,selected_years, selected_country):
-
-    if selected_years != "All Countries":
-        df = df[df['Year'] == selected_years]
-
-    if selected_country != "All Countries":
-        df = df[df['region'] == selected_country]
-    return df
 
 
 def data_over_time(df, col):
@@ -116,7 +108,7 @@ def medal_count_yearWise(df, country):
     return  final_df
 
 
-def country_event_heatmap(df, country):
+def get_event_heatmap(df, country):
     temp_df = df.dropna(subset=['Medal'])
     temp_df.drop_duplicates(subset=['Team', 'NOC', 'Games', 'Year', 'City', 'Sport', 'Event', 'Medal'], inplace=True)
     new_df = temp_df[temp_df['region'] == country]

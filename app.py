@@ -35,16 +35,16 @@ if user_menu == 'Medal Dashboard':
     st.sidebar.header("Medal Overview")
     
     #Get list of years and country for options
-    years, country = processModule.country_year_list(df_main)
+    years, country = processModule.get_country_year(df_main)
 
     selected_country = st.sidebar.selectbox("Select Country", country)
     
     
     #Get the filtered df
     selected_years='All Countries'
-    # medal_tally_df = processModule.fetch_medal_count(df, selected_years, selected_country)
-    medal_tally_df_summer = processModule.fetch_medal_count(df_summer, selected_years, selected_country)
-    medal_tally_df_winter = processModule.fetch_medal_count(df_winter, selected_years, selected_country)
+
+    medal_tally_df_summer = processModule.get_medal_count(df_summer, selected_years, selected_country)
+    medal_tally_df_winter = processModule.get_medal_count(df_winter, selected_years, selected_country)
     
     if selected_years == 'All Countries' and selected_country == 'All Countries':
         st.title("All Countries Tally")
@@ -170,7 +170,7 @@ elif user_menu == 'Home':
 elif user_menu == 'Overall Analysis':
     
     #Get list of years and country for options
-    years, country = processModule.country_year_list(df_main)
+    years, country = processModule.get_country_year(df_main)
     html_string = "<h1>Overall Analysis</h1> <p>A flexible analysis page containing different factors to tune with such as seasons, sports, countries and years.</p>"
 
     st.markdown(html_string, unsafe_allow_html=True)
@@ -312,7 +312,7 @@ elif user_menu == 'Overall Analysis':
 elif user_menu == 'Country-wise Analysis':
 
     #Get list of years and country for options
-    years, country = processModule.country_year_list(df_main)
+    years, country = processModule.get_country_year(df_main)
 
     seasons = ['All Seasons', 'Summer', 'Winter']
 
@@ -344,7 +344,7 @@ elif user_menu == 'Country-wise Analysis':
         st.plotly_chart(fig)
 
         st.title("Sports in which " +selected_country + " Athelets performed well ")
-        pt = processModule.country_event_heatmap(temp_df, selected_country)
+        pt = processModule.get_event_heatmap(temp_df, selected_country)
         fig, ax = plt.subplots(figsize=(20, 20))
         try:
             ax = sns.heatmap(pt, annot=True)
@@ -366,7 +366,7 @@ elif user_menu == 'Country-wise Analysis':
 elif user_menu == 'Athlete-wise Analysis':
 
     #Get list of years and country for options
-    years, country = processModule.country_year_list(df_main)
+    years, country = processModule.get_country_year(df_main)
 
 
     athlete_df_summer = df_summer.drop_duplicates(subset=['Name', 'Team'])
